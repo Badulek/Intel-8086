@@ -15,14 +15,14 @@ registers = {"AL": None,
 
 
 def register_state():
-    print("\nStan rejestrów procesora Intel 8086: \n")
+    print("\nState of the registers of Intel 8086 processor: \n")
     for register in registers:
         print(register, "=", registers[register])
 
 
 def user_input():
     for r in registers:
-        registers[r] = hex(int(input("Podaj wartość przechowywaną w rejestrze {r}: "), 16))
+        registers[r] = hex(int(input(f"Enter value stored in {r} register: "), 16))
 
 
 def inputs_hex_and_8_bit():
@@ -81,7 +81,7 @@ while True:
     register_state()
     try:
         action = int(input(
-            "\nWybierz czynność, którą chcesz wykonać:\n\nZmiana wartości rejestrów - 1\nWprowadź polecenie pomiędzy rejestrami do wykonania przez program - 2\nWprowadź polecenie pomiędzy rejestrami a pamięcią do wykonania przez program- 3\nZamknij - 4\n\n"))
+            "\nEnter action you want to execute:\n\nChange values of the registers - 1\nEnter instruction between registers for program to execute - 2\nEnter instruction between registers and memory for program to execute - 3\nQuit - 4\n\n"))
         if action == 1:
             wrong_inputs = True
             while wrong_inputs:
@@ -89,103 +89,103 @@ while True:
                 if inputs_hex_and_8_bit():
                     wrong_inputs = False
                 else:
-                    print("\nDane nie są 8 bitowe!\n")
+                    print("\nInputs not 8 bit !\n")
         elif action == 2:
             instruction = int(
                 input(
-                    "\nWybierz polecenie dla symulacji:\nMOV  - 1\nXCHG - 2\nNOT  - 3\nINC  - 4\nDEC  - 5\nAND  - 6\nOR   - 7\nXOR  - 8\nADD  - 9\nSUB  - 10\n\n"))
+                    "\nChoose instruction for simulation:\nMOV  - 1\nXCHG - 2\nNOT  - 3\nINC  - 4\nDEC  - 5\nAND  - 6\nOR   - 7\nXOR  - 8\nADD  - 9\nSUB  - 10\n\n"))
             if instruction == 1:
-                reg1 = input("Wybierz pierwszy rejestr dla polecenia MOV: ").upper()
-                reg2 = input("Wybierz drugi rejestr dla polecenia MOV: ").upper()
+                reg1 = input("Enter first register for MOV instruction: ").upper()
+                reg2 = input("Enter second register for MOV instruction: ").upper()
                 if reg1 and reg2 in registers:
                     MOV(reg2, reg1)
                     print("\n")
                 else:
-                    print("\nZły rejestr!")
+                    print("\nWrong registers!")
             elif instruction == 2:
-                reg1 = input("Wybierz pierwszy rejestr dla polecenia XCHG: ")
-                reg2 = input("Wybierz drugi rejestr dla polecenia XCHG: ")
+                reg1 = input("Enter first register for XCHG instruction: ")
+                reg2 = input("Enter second register for XCHG instruction: ")
                 if reg1 and reg2 in registers:
                     XCHG(reg1, reg2)
                 else:
-                    print("\nZły registers!")
+                    print("\nWrong registers!")
             elif instruction == 3:
-                reg = input("Wybierz rejestr dla polecenia NOT: ")
+                reg = input("Enter register for NOT instruction: ")
                 if reg in registers:
                     NOT(reg)
                 else:
-                    print("\nZły rejestr!")
+                    print("\nWrong register!")
             elif instruction == 4:
-                reg = input("Wybierz rejestr dla polecenia INC: ")
+                reg = input("Enter register for INC instruction: ")
                 if reg in registers:
                     INC(reg)
                 else:
-                    print("\nZły rejestr!")
+                    print("\nWrong register!")
             elif instruction == 5:
-                reg = input("Wybierz rejestr dla polecenia DEC: ")
+                reg = input("Enter register for DEC instruction: ")
                 if reg in registers:
                     DEC(reg)
                 else:
-                    print("\nZły rejestr!")
+                    print("\nWrong register!")
             elif instruction == 6:
-                reg1 = input("Wybierz pierwszy rejestr dla polecenia AND: ")
-                reg2 = input("Wybierz drugi rejestr dla polecenia AND: ")
+                reg1 = input("Enter first register for AND instruction: ")
+                reg2 = input("Enter second register for AND instruction: ")
                 if reg1 and reg2 in registers:
                     AND(reg1, reg2)
                 else:
-                    print("\nZły rejestr!")
+                    print("\nWrong registers!")
             elif instruction == 7:
-                reg1 = input("Wybierz pierwszy rejestr dla polecenia OR: ")
-                reg2 = input("Wybierz drugi rejestr dla polecenia OR: ")
+                reg1 = input("Enter first register for OR instruction: ")
+                reg2 = input("Enter second register for OR instruction: ")
                 if reg1 and reg2 in registers:
                     OR(reg1, reg2)
                 else:
-                    print("\nZły rejestr!")
+                    print("\nWrong registers!")
             elif instruction == 8:
-                reg1 = input("Wybierz pierwszy rejestr dla polecenia XOR: ")
-                reg2 = input("Wybierz drugi rejestr dla polecenia XOR: ")
+                reg1 = input("Enter first register for XOR instruction: ")
+                reg2 = input("Enter second register for XOR instruction: ")
                 if reg1 and reg2 in registers:
                     XOR(reg1, reg2)
                 else:
-                    print("\nZły rejestr!")
+                    print("\nWrong registers!")
             elif instruction == 9:
-                reg1 = input("Wybierz pierwszy rejestr dla polecenia ADD: ")
-                reg2 = input("Wybierz drugi rejestr dla polecenia ADD: ")
+                reg1 = input("Enter first register for ADD instruction: ")
+                reg2 = input("Enter second register for ADD instruction: ")
                 if reg1 and reg2 in registers:
                     ADD(reg1, reg2)
                 else:
-                    print("\nZły rejestr!")
+                    print("\nWrong registers!")
             elif instruction == 10:
-                reg1 = input("Wybierz pierwszy rejestr dla polecenia SUB: ")
-                reg2 = input("Wybierz pierwszy rejestr dla polecenia SUB: ")
+                reg1 = input("Enter first register for SUB instruction: ")
+                reg2 = input("Enter second register for SUB instruction: ")
                 if reg1 and reg2 in registers:
                     SUB(reg1, reg2)
                 else:
-                    print("\nZły rejestr!")
+                    print("\nWrong registers!")
             else:
-                print("Złe polecenie!")
+                print("Wrong instruction!")
         elif action == 3:
             try:
-                object1 = input("Wybierz rejestr lub komórkę pamięci dla polecenia: ")
+                object1 = input("Enter register or memory cell for instruction: ")
                 if object1.upper() in registers:
-                    object2 = input("Wybierz komórkę pamięci dla polecenia: ")
+                    object2 = input("Enter memory cell for instruction: ")
                     if 255 < object2 < 65536:
                         registers[object1] = memory[int(object2, 16)]
                     else:
-                        print("Zła komórka pamięci!")
+                        print("Wrong memory cell!")
                 elif int(object1, 16) < 65536:
-                    object2 = input("Wybierz drugi rejestr dla polecenia: ")
+                    object2 = input("Enter second register for instruction: ")
                     if object2.upper() in registers:
                         memory[int(object1, 16)] = registers[object2]
                     else:
-                        print("Zły rejestr!")
+                        print("Wrong register!")
                 else:
-                    print("Zły rejestr lub komórka pamięci!")
+                    print("Wrong register or memory cell!")
             except ValueError:
-                print("BŁĄD")
+                print("ERROR")
         elif action == 4:
             break
         else:
-            print("Zła czynność!")
+            print("Wrong action!")
     except ValueError:
-        print("\nBŁĄD!")
+        print("\nERROR!")
